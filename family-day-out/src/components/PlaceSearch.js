@@ -1,3 +1,5 @@
+import Button from './Button';
+import DateSelect from './DateSelect';
 import React from 'react';
 import PlacesAutocomplete, {
     //geocodeByAddress, 
@@ -5,7 +7,7 @@ import PlacesAutocomplete, {
   } from "react-places-autocomplete";
   
 
-  const PlaceSearch = () => {
+const PlaceSearch = () => {
 
 const [address, setAddress] = React.useState("");
   const handleSelect = async value => {
@@ -30,6 +32,8 @@ const [address, setAddress] = React.useState("");
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
               <input id="id_address_autocomplete" {...getInputProps({ placeholder: "Search Places" })} />
+              <Button />
+              <DateSelect />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}
               {suggestions.map((suggestion, index) =>{
@@ -39,11 +43,13 @@ const [address, setAddress] = React.useState("");
                 return (<div key={index}  {...getSuggestionItemProps(suggestion, { style })} onClick={() => handleClick(suggestion.description)}>
                   {suggestion.description}</div>
                 );
+                
               })}
             </div>
           </div>
         )}
       </PlacesAutocomplete>
+      
     </div>
     );
   }
